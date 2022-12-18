@@ -1,0 +1,71 @@
+﻿@*
+*@
+@{
+}
+@model BookBuddy.Models.EditModel
+
+<h3>My Books</h3>
+
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<table cellspacing="8" align="left" cellpadding="30" border="0">
+    <tr>
+        <th>Title</th>
+        <th>ISBN</th>
+        <th>Author</th>
+        <th>Genre</th>
+        <th>Location</th>
+        <th>Rating</th>
+        <th>ReadStatus</th>
+    </tr>
+    @for (int i = 0; i < @LibraryModel.BookCount; i++)
+    {
+
+        <tr>
+            <td> <a href="@Url.Action("EditBook", "Edit", new {editISBN = LibraryModel.BookISBN[i]})">@LibraryModel.BookTitle[i]</a></td>
+            <td>@LibraryModel.BookISBN[i]</td>
+            <td>@LibraryModel.BookAuthor[i]</td>
+            <td>@LibraryModel.BookGenre[i]</td>
+            @for(int j = 0; j < BorrowModel.lendCount; j++){
+                @if ((BorrowModel.lendTitle[j] == LibraryModel.BookTitle[i]) && !BorrowModel.lendReturned[j])
+                {
+                    <td>Book is lent out</td>
+                }
+                else if (BorrowModel.lendTitle[j] == LibraryModel.BookTitle[i])
+                {
+                    <td>@LibraryModel.BookLocation[i]</td>
+                }
+            }
+            @if (!BorrowModel.lendTitle.Contains(LibraryModel.BookTitle[i])){
+                <td>@LibraryModel.BookLocation[i]</td>
+            }
+            @if (@LibraryModel.BookRating[i] == "")
+            {
+                <td>N/A</td>
+            }
+            else
+            {
+                <td>@LibraryModel.BookRating[i]</td>
+            }
+            <td>@LibraryModel.ReadStatus[i]</td>
+        </tr>
+    }
+    <tr>
+        <td>
+            <input type="submit" value="Add New Book" onclick="location.href='@Url.Action("AddBook", "Library")'" />
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,84 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@{
+    Layout = null;
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BookBuddy</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BookBuddy.styles.css" asp-append-version="true" />
+</head>
+
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<h3 align=left> Books I've Borrowed</h3>
+
+<table cellspacing="8" align="left" cellpadding="30" border="0">
+    <tr>
+        <th>Owner</th>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Condition when Borrowed</th>
+    </tr>
+    @for (int i = 0; i < @BorrowModel.borrowCount; i++)
+    {
+        <tr>
+            @if (@BorrowModel.borrowReturned[i])
+            {
+                <th>@BorrowModel.borrowName[i]</th>
+                <th>@BorrowModel.borrowTitle[i]</th>
+                <th>@BorrowModel.borrowDate[i]</th>
+                <th>@BorrowModel.borrowCondition[i]</th>
+            }
+        </tr>
+    }
+</table>
+
+
+<div style="clear:both;"></div>
+<br />
+<br />
+
+<h3 align=left> Books I've Lent </h3>
+<table cellspacing="8" align="left" cellpadding="30" border="0">
+    <tr>
+        <th>Borrower</th>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Condition when Lent</th>
+        <th>Borrower Phone</th>
+    </tr>
+    @for (int i = 0; i < @BorrowModel.lendCount; i++)
+    {
+        <tr>
+            @if (@BorrowModel.lendReturned[i])
+            {
+                <th>@BorrowModel.lendName[i]</th>
+                <th>@BorrowModel.lendTitle[i]</th>
+                <th>@BorrowModel.lendDate[i]</th>
+                <th>@BorrowModel.lendCondition[i]</th>
+                <th>@BorrowModel.lendPhone[i]</th>
+            }
+        </tr>
+    }
+</table>

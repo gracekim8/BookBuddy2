@@ -1,0 +1,49 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<table cellspacing="8" align="left" cellpadding="20" border="0">
+    <tr>
+        <th>Title</th>
+        <th>ISBN</th>
+        <th>Author</th>
+        <th>Genre</th>
+        <th>Location</th>
+        <th>Rating</th>
+        <th>ReadStatus</th>
+    </tr>
+    <tr>
+        <td> <input type="text" placeholder=Title id="Rating" class="tb" /></td>
+        <td> <input type="text" placeholder=ISBN id="Rating" class="tb" /></td>
+        <td> <input type="text" placeholder=Author id="Rating" class="tb" /></td>
+        <td> <input type="text" placeholder=Genre id="Rating" class="tb" /></td>
+        <td> <input type="text" placeholder=Location id="Rating" class="tb" /></td>
+        <td> <input type="text" placeholder=Rating id="Rating" class="tb" /></td>
+        <td>
+            <input type="checkbox" id="readBook" name="readBook" value="Read">
+            <label for="readBook">Book is Read</label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="submit" value="Add Book" onclick="location.href='@Url.Action("MyBooks", "Library")'" />
+        </td>
+    </tr>
+    </table>

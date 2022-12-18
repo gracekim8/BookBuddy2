@@ -1,0 +1,44 @@
+﻿@model BookBuddy.Models.LoginModel
+
+@{
+    Layout = null;
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BookBuddy</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BookBuddy.styles.css" asp-append-version="true" />
+</head>
+
+<br /><br />
+
+<div align="center">
+    <h1>Book Buddy</h1>
+    <br /><br />
+    <h1 class="display-4">Login</h1>
+</div>
+
+<br />
+
+<div class="container">
+    <form asp-action="LoginSubmit" method="dialog=" post">
+        <table cellspacing="2" align="center" cellpadding="8" border="0">
+            <tr>
+                <td align="right">Username:</td>
+                <td><input type="text" asp-for="Username" placeholder="Enter here" id="Username" class="tb" /></td>
+            </tr>
+            <tr>
+                <td align="right">Password:</td>
+                <td><input type="password" asp-for="Password" placeholder="Enter here" id="Password" class="tb" /></td>
+            <tr>
+                <td>
+                <td>
+                    <input type="submit" value="Login" onclick="location.href='@Url.Action("LoginSubmit", "HomeController")'" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

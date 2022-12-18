@@ -1,0 +1,93 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<h3 align = left> Books Currently Borrowed </h3>
+
+<table cellspacing="8" align="left" cellpadding="30" border="0">
+    <tr>
+        <th>Owner</th>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Condition when Borrowed</th>
+        <th>Mark As Returned</th>
+    </tr>
+    @for (int i = 0; i < @BorrowModel.borrowCount; i++)
+    {
+        <tr>
+            @if (!@BorrowModel.borrowReturned[i])
+            {
+                <td>@BorrowModel.borrowName[i]</td>
+                <td>@BorrowModel.borrowTitle[i]</td>
+                <td>@BorrowModel.borrowDate[i]</td>
+                <td>@BorrowModel.borrowCondition[i]</td>
+                <td>
+                    <input type="checkbox" id="returned" name="returned" value="Returned">
+                </td>
+            }
+        </tr>
+    }
+</table>
+
+
+<div style="clear:both;"></div>
+<br/>
+<br/>
+
+<h3 align=left> Books Currently Lent </h3>
+
+<table cellspacing="8" align="left" cellpadding="30" border="0">
+    <tr>
+        <th>Borrower</th>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Condition when Lent</th>
+        <th>Borrower Phone</th>
+        <th>Mark As Returned</th>
+    </tr>
+    @for (int i = 0; i < @BorrowModel.lendCount; i++)
+    {
+        <tr>
+            @if (!@BorrowModel.lendReturned[i])
+            {
+                <td>@BorrowModel.lendName[i]</td>
+                <td>@BorrowModel.lendTitle[i]</td>
+                <td>@BorrowModel.lendDate[i]</td>
+                <td>@BorrowModel.lendCondition[i]</td>
+                <td>@BorrowModel.lendPhone[i]</td>
+                <td>
+                    <input type="checkbox" id="returned" name="returned" value="Returned">
+                </td>
+            }
+        </tr>
+    }
+</table>
+
+
+<div style="clear:both;"></div>
+<br />
+<br />
+
+
+<a href="@Url.Action("BorrowHistory", "Borrow")" target="_blank">See Borrowing History</a>
+<br>
+<br>
+<br>
+<input type="submit" value="Submit Changes" onclick="location.href='@Url.Action("Borrowed", "Borrow")'" />
